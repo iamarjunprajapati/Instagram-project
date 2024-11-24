@@ -2,11 +2,7 @@ import React from 'react'
 import Posts from './Posts'
 
 const Feed = () => {
-  return (
-    <div>
-        <Posts/>
-    </div>
-  )
+  return <Posts/>
 }
 
 export default Feed;

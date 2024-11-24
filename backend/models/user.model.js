@@ -4,7 +4,7 @@ const userSchema = new mongoose.Schema({
     username:{type:String, required:true, unique:true},
     email:{type:String,required:true,unique:true},
     password:{type:String,required:true},
-    profilePicture:{type:String,default:''},
+    profilePicture:{type:String,default:'https://res.cloudinary.com/des9zdptj/image/upload/v1732083475/blank-profile-picture_t9ux5t.png'},
     bio:{type:String, default:''},
     gender:{type:String,enum:['male','female']},
     followers:[{type:mongoose.Schema.Types.ObjectId, ref:'User'}],

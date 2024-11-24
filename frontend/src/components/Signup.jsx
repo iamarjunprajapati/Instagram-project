@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
@@ -6,6 +6,7 @@ import axios from "axios";
 import { toast } from "sonner";
 import { Link, useNavigate } from "react-router-dom";
 import { Loader2 } from "lucide-react";
+import { useSelector } from "react-redux";
 
 const Signup = () => {
   const [input, setInput] = useState({
@@ -18,6 +19,7 @@ const Signup = () => {
   const changeEventHandler = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
+  const {user} = useSelector(store => store.auth);
 
   const signupHandler = async (e) => {
     e.preventDefault();
@@ -44,7 +46,7 @@ const Signup = () => {
           email: "",
           password: "",
         });
-        navigate('/');
+        navigate('/login');
 
       }
     } catch (error) {
@@ -59,6 +61,11 @@ const Signup = () => {
       setLoading(false);
     }
   };
+  useEffect(()=>{
+    if(user){
+      navigate('/')
+    }
+  },[]);
 
   return (
     <>

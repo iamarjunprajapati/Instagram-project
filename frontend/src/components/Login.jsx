@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
@@ -6,7 +6,7 @@ import axios from "axios";
 import { toast } from "sonner";
 import { Link, useNavigate } from "react-router-dom";
 import { Loader2 } from "lucide-react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setAuthUser } from "@/redux/authSlice";
 
 const Signup = () => {
@@ -15,6 +15,7 @@ const Signup = () => {
     password: "",
   });
   const [loading, setLoading] = useState(false);
+  const {user} = useSelector(store => store.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -24,7 +25,7 @@ const Signup = () => {
 
   const signupHandler = async (e) => {
     e.preventDefault();
-    console.log(input);
+    // console.log(input);
     try {
       setLoading(true);
       const res = await axios.post(
@@ -37,7 +38,7 @@ const Signup = () => {
           withCredentials: true,
         }
       );
-      console.log(res.data);
+      // console.log(res.data);
       if (res.data.success) {
         toast.success(res.data.message);
         setInput({
@@ -59,6 +60,12 @@ const Signup = () => {
       setLoading(false);
     }
   };
+
+  useEffect(()=>{
+    if(user){
+      navigate('/')
+    }
+  },[]);
 
   return (
     <>

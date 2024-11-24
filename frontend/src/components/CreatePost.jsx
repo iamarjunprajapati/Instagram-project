@@ -9,6 +9,7 @@ import { toast } from "sonner";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "@/redux/postSlice";
+import { useNavigate } from "react-router-dom";
 
 const CreatePost = ({ open, setOpen }) => {
   const dispatch = useDispatch();
@@ -18,7 +19,8 @@ const CreatePost = ({ open, setOpen }) => {
   const [imagePreview, setImagePreview] = useState("");
   const [loading, setLoading] = useState("");
   const {user} = useSelector(store =>store.auth);
-  const {posts} = useSelector(store =>store.post)
+  const {posts} = useSelector(store =>store.post);
+  const navigate = useNavigate();
 
   const createPostHandler = async () => {
     
@@ -41,6 +43,8 @@ const CreatePost = ({ open, setOpen }) => {
       if (res.data.success) {
         dispatch((setPosts([res.data.post, ...posts])))
         toast.success(res.data.message);
+        navigate('/')
+        setImagePreview("");
         setOpen(false);
       }
     } catch (error) {
@@ -73,12 +77,12 @@ const CreatePost = ({ open, setOpen }) => {
         </DialogHeader>
         <div className="flex gap-3 items-center">
           <Avatar>
-            <AvatarImage src="" alt="user-image" />
+            <AvatarImage src={user?.profilePicture} alt="user-image" className="w-full object-cover" />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
           <div>
             <h1 className="font-semibold text-xs">Username</h1>
-            <span className="text-gray-600 text-xs">Bio here....</span>
+            <span className="text-gray-600 text-xs">{user?.bio}</span>
           </div>
         </div>
         <Textarea

@@ -101,7 +101,13 @@ export const login = async (req, res) => {
 };
 export const logout = async (_, res) => {
     try {
-        return res.cookie("token", "", { maxAge: 0 }).json({
+        return res.cookie("token", "", { 
+            maxAge: 0, 
+            httpOnly: true, 
+            secure: true, 
+            path: "/", 
+            sameSite: "Lax" 
+        }).json({
             message: 'Logged out successfully.',
             success: true
         });
@@ -113,6 +119,7 @@ export const getProfile = async (req, res) => {
     try {
         const userId = req.params.id;
         let user = await User.findById(userId).populate({path:'posts', createdAt:-1}).populate('bookmarks');
+        console.log(user)
         return res.status(200).json({
             user,
             success: true

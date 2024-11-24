@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Avatar, AvatarImage } from './ui/avatar';
 import { Button } from './ui/button';
@@ -9,15 +9,16 @@ import { Loader2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { setAuthUser } from '@/redux/authSlice';
 import { toast } from 'sonner';
+
 const EditProfile = () => {
-    const imageRef = useRef()
+    const imageRef = useRef();
     const { user, userProfile } = useSelector(store => store.auth);
 
     const [loading, setLoading] = useState(false);
     const [input, setInput] = useState({
         profilePhoto: user?.profilePicture,
         bio: user?.bio,
-        gender: userProfile.gender
+        gender: userProfile?.gender || '' // Use a default value if userProfile is null
     });
 
     const navigate = useNavigate();
@@ -28,10 +29,11 @@ const EditProfile = () => {
         if (file) {
             setInput({ ...input, profilePhoto: file });
         }
-    }
+    };
+
     const selectChangeHandler = (value) => {
         setInput({ ...input, gender: value });
-    }
+    };
 
     const editProfileHandler = async () => {
         const formData = new FormData();
@@ -57,7 +59,7 @@ const EditProfile = () => {
                 };
                 dispatch(setAuthUser(updatedUserData));
                 toast.success(res.data.message);
-                navigate(`/profile/${user?._id}`)
+                navigate(`/profile/${user?._id}`);
             }
 
         } catch (error) {
@@ -65,7 +67,7 @@ const EditProfile = () => {
         } finally {
             setLoading(false);
         }
-    }
+    };
 
     return (
         <div className='flex max-w-2xl mx-auto pl-md-10 px-2'>
@@ -95,7 +97,7 @@ const EditProfile = () => {
                     <h1 className='fond-bold text-xl mb-2'>
                         Gender
                     </h1>
-                    <Select className="rounded" defaultValue={input.gender} onValueChange={selectChangeHandler}>
+                    <Select className="rounded" defaultValue={input?.gender} onValueChange={selectChangeHandler}>
                         <SelectTrigger className="rounded  w-full">
                             <SelectValue />
                         </SelectTrigger>
@@ -115,6 +117,7 @@ const EditProfile = () => {
                 </div>
             </section >
         </div >
-    )
-}
+    );
+};
+
 export default EditProfile;

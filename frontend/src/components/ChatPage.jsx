@@ -8,7 +8,6 @@ import { Button } from './ui/button';
 import Messages from './Messages';
 import axios from 'axios';
 import { setMessages } from '@/redux/chatSlice';
-import { toast } from 'sonner';
 
 const ChatPage = () => {
     const [textMessage, setTextMessage] = useState("");

@@ -5,7 +5,7 @@ import Home from "./components/Home.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Profile from "./components/Profile.jsx";
 import EditProfile from "./components/EditProfile.jsx";
-// import ChatPage from "./components/chatPage.jsx";
+import ChatPage from "./components/chatPage.jsx";
 import { io } from 'socket.io-client';
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -31,11 +31,10 @@ const browserRouter = createBrowserRouter([
         path: "/account/edit",
         element: <ProtectedRoute><EditProfile /></ProtectedRoute>,
       },
-      // {
-      //   path: "/chat",
-      //   element: <ProtectedRoute> <ChatPage /></ProtectedRoute>,
-      // },
-
+      {
+        path: "/chat",
+        element: <ProtectedRoute> <ChatPage /></ProtectedRoute>,
+      },
     ],
   },
   {

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Avatar, AvatarImage } from './ui/avatar';
 import { setSelectedUser } from '@/redux/authSlice';
 import { Input } from './ui/input';
-import { MessageCircleCode, MessageSquare } from 'lucide-react';
+import { MessageCircleCode } from 'lucide-react';
 import { Button } from './ui/button';
 import Messages from './Messages';
 import axios from 'axios';

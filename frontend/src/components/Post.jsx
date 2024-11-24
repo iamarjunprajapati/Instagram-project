@@ -40,7 +40,7 @@ const Post = ({ post }) => {
   const likeDislikeHandler = async () => {
     try {
       const action = liked ? 'dislike' : 'like';
-      const res = await axios.get(`http://localhost:8000/api/v1/post/${post._id}/${action}`, { withCredentials: true });
+      const res = await axios.get(`https://social-media-project-insta.onrender.com/api/v1/post/${post._id}/${action}`, { withCredentials: true });
       if (res.data.success) {
         // console.log('data with success');
 
@@ -74,7 +74,7 @@ const Post = ({ post }) => {
   }
   const deletePostHandler = async () => {
     try {
-      const res = await axios.delete(`http://localhost:8000/api/v1/post/delete/${post._id}`, { withCredentials: true });
+      const res = await axios.delete(`https://social-media-project-insta.onrender.com/api/v1/post/delete/${post._id}`, { withCredentials: true });
       if (res.data.success) {
         const updatedPostData = posts.filter((postItem) => postItem?._id !== post?._id);
         dispatch(setPosts(updatedPostData));

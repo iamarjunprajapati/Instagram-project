@@ -27,12 +27,12 @@ const Messages = ({ selectedUser }) => {
                     </Link>
                 </div>
             </div>
-            <div className="flex flex-col gap-3 mb-[10rem] sm:mb-0">
+            <div className="flex flex-col gap-3 mb-[10rem]">
                 {
                     messages && messages.map((msg) => {
                         return (
-                            <div key={msg?._id} className={`flex ${msg?.senderId === user?._id ? 'justify-end':'justify-start' }`}>
-                                <div className={`mx-3 p-2 rounded max-w-xs break-words ${msg.senderId === user?._id ?'bg-blue-500 text-white':'bg-gray-200'}`}>
+                            <div key={msg?._id} className={`flex ${msg?.senderId === user?._id ? 'justify-end' : 'justify-start'}`}>
+                                <div className={`mx-3 p-2 rounded max-w-xs break-words ${msg.senderId === user?._id ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}>
                                     {msg.message}
                                 </div>
                             </div>
@@ -43,5 +43,4 @@ const Messages = ({ selectedUser }) => {
         </div>
     )
 }
-
 export default Messages;

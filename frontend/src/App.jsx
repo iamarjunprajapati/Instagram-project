@@ -1,11 +1,11 @@
-import Signup from "./components/Signup";
-import Login from "./components/Login";
-import MainLayout from "./components/MainLayout";
-import Home from "./components/Home";
+import Signup from "./components/Signup.jsx";
+import Login from "./components/Login.jsx";
+import MainLayout from "./components/MainLayout.jsx";
+import Home from "./components/Home.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Profile from "./components/Profile";
-import EditProfile from "./components/EditProfile";
-import ChatPage from "./components/chatPage";
+import Profile from "./components/Profile.jsx";
+import EditProfile from "./components/EditProfile.jsx";
+import ChatPage from "./components/chatPage.jsx";
 import { io } from 'socket.io-client';
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";

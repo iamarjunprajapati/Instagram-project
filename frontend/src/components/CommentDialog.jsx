@@ -38,7 +38,7 @@ const CommentDialog = ({ open, setOpen, post }) => {
     try {
       console.log('posting started');
 
-      const res = await axios.post(`http://localhost:8000/api/v1/post/${selectedPost?._id}/comment`, { text }, {
+      const res = await axios.post(`https://social-media-project-insta.onrender.com/api/v1/post/${selectedPost?._id}/comment`, { text }, {
         headers: {
           'Content-Type': 'application/json',
         },

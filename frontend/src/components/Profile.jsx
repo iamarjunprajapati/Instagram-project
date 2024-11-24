@@ -23,7 +23,7 @@ const Profile = () => {
 
  
   const followUnfollowHandler = async () => {
-    let res = await axios.post(`http://localhost:8000/api/v1/user/followorunfollow/${userProfile?._id}`,{},{withCredentials:true});
+    let res = await axios.post(`https://social-media-project-insta.onrender.com/api/v1/user/followorunfollow/${userProfile?._id}`,{},{withCredentials:true});
     if (res.data.success) {
       toast.success(res.data.message);
     }

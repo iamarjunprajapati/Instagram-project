@@ -30,7 +30,7 @@ const LeftSideBar = () => {
 
   const logoutHandler = async () => {
     try {
-      let res = await axios.get("http://localhost:8000/api/v1/user/logout", { withCredentials: true });
+      let res = await axios.get("https://social-media-project-insta.onrender.com/api/v1/user/logout", { withCredentials: true });
       if (res.data.success) {
         dispatch(setAuthUser(null));
         dispatch(setSelectedPost(null));

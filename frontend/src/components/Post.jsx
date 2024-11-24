@@ -114,7 +114,7 @@ const Post = ({ post }) => {
 
   const bookmarkHandler = async () => {
     try {
-      let res = await axios.get(`http://localhost:8000/api/v1/post/${post?._id}/bookmark`, { withCredentials: true });
+      let res = await axios.get(`https://social-media-project-insta.onrender.com/api/v1/post/${post?._id}/bookmark`, { withCredentials: true });
       if (res.data.success) {
         toast.success(res.data.message);
       }
